@@ -1,14 +1,21 @@
+from flask import current_app as app
 from flask import render_template, flash, redirect, url_for, request, abort
-from app import app, db
-from app.forms import LoginForm, EditProfileForm, ChangePasswordForm 
-from app.forms import ResetPasswordRequestForm, ResetPasswordForm, NewAccountForm
-from app.forms import TestMailForm
+from glauthui.extensions import db
+from glauthui.forms import LoginForm, EditProfileForm, ChangePasswordForm
+from glauthui.forms import ResetPasswordRequestForm, ResetPasswordForm, NewAccountForm
+from glauthui.forms import TestMailForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User, Group
-from app.email import send_password_reset_email, send_test_mail
+from glauthui.models import User, Group
+from glauthui.email import send_password_reset_email, send_test_mail
 from werkzeug.urls import url_parse
-from app.glauth import create_glauth_config
+from glauthui.glauth import create_glauth_config
 from ipaddress import ip_network, ip_address
+
+from logging import Logger
+
+
+logger = Logger(__name__)
+
 
 @app.route('/')
 @app.route('/index')
@@ -46,7 +53,7 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
-            app.logger.warning('Failed login attempt with user {} from {}'.format(
+            logger.warning('Failed login attempt with user {} from {}'.format(
                 form.username.data, 
                 str(remote_addr)))
             return redirect(url_for('login'))
@@ -98,7 +105,7 @@ def edit_profile():
 def change_password():
     form = ChangePasswordForm(current_user.password_hash)
     if form.cancel.data:
-        return redirect(url_for('index'))
+        return redirect(url_for('user.index'))
     if form.validate_on_submit():
         current_user.set_password(form.newpassword1.data)
         db.session.commit()

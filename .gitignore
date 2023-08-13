@@ -13,3 +13,6 @@ logs/
 docker-compose.yaml
 requirements.old.txt
 notes.txt
+logs
+instance
+.idea/*

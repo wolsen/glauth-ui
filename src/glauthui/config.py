@@ -18,7 +18,7 @@ class Config(object):
 
     # Database Stuff
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'db', 'app.db')
+        'sqlite://' + os.path.join(basedir, 'db', 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Glauth Stuff 
     GLAUTH_CFG_PATH = os.environ.get('GLAUTH_CFG_PATH') or \

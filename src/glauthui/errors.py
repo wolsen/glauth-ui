@@ -1,5 +1,7 @@
 from flask import render_template
-from app import app, db
+from flask import current_app as app
+from glauthui.extensions import db
+
 
 @app.errorhandler(403)
 def forbidden(error):

@@ -1,5 +1,5 @@
-from app import app, db
-from app.models import Group, User, Settings, create_basic_db
+from glauthui import app, db
+from glauthui.models import Group, User, Settings, create_basic_db
 
 @app.shell_context_processor
 def make_shell_context():

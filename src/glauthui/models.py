@@ -1,4 +1,6 @@
-from app import app, db, generate_password_hash, check_password_hash, login
+from glauthui.extensions import db, login
+from flask import current_app as app
+from glauthui.utils import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from time import time
 import jwt
@@ -78,7 +80,6 @@ class User(UserMixin, db.Model):
         if self.givenname and self.username:
             return '{} {}'.format(self.givenname, self.surname)
         return '{}'.format(self.username)
-
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

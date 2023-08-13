@@ -1,7 +1,8 @@
 from threading import Thread
 from flask import render_template
 from flask_mail import Message
-from app import app, mail
+from flask import current_app as app
+from glauthui.extensions import mail
 
 # https://pythonhosted.org/Flask-Mail/
 

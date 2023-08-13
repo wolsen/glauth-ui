@@ -1,0 +1,50 @@
+[project]
+name = "glauthui"
+description = "Simple web interface for managing GLAuth users and groups."
+dynamic = ["version", "dependencies"]
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Nils Thiele"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Flask",
+    "Topic :: Software Development :: User Interfaces",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/sonicnkt/glauth-ui"
+
+[tools.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[build-system]
+requires = ["setuptools>=42", "wheel", "setuptools-git-versioning"]
+build-backend = "setuptools.build_meta"
+
+[tool.codespell]
+skip = "build,lib,venv,.venv,.tox,.git,.mypy_cache,.ruff_cache,.vscode,.coverage,.idea"
+
+[tool.black]
+line-length = 99
+target-version = ["py310"]
+
+[tool.isort]
+profile = "black"
+
+# Linting tools configuration
+[tool.flake8]
+max-line-length = 99
+max-doc-length = 99
+max-complexity = 10
+exclude = [".git", "__pycache__", ".tox", "build", "dist", "*.egg_info", "venv", ".venv"]
+select = ["E", "W", "F", "C", "N", "R", "D", "H"]
+# Ignore W503, E501 because using black creates errors with this
+# Ignore D107 Missing docstring in __init__
+ignore = ["W503", "E501", "D107"]
+per-file-ignores = [
+]
+docstring-convention = "google"
+copyright-check = "False"

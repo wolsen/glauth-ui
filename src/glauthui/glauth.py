@@ -1,6 +1,6 @@
 # Generate glauth config
-from app import app
-from app.models import User, Group, Settings
+from flask import current_app as app
+from glauthui.models import User, Group, Settings
 from time import strftime, localtime
 
 def create_glauth_config():

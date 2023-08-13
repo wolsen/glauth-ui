@@ -1,11 +1,12 @@
-from app import app, db #, admin
-from app.models import User, Group, Settings
-from app.forms import EditGlauthForm
+from glauthui.extensions import db
+from glauthui.models import User, Group, Settings
+from glauthui.forms import EditGlauthForm
 from flask_admin import Admin, AdminIndexView, BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 from flask_login import current_user, login_user, logout_user
 from flask import flash, redirect, url_for, request, abort
-from app.email import send_password_reset_email, send_account_invite
+from flask import current_app as app
+from glauthui.email import send_password_reset_email, send_account_invite
 
 # Custom Forms and Fields for FlaskAdmin
 from wtforms import PasswordField, BooleanField, Form
@@ -17,7 +18,7 @@ from random import choices
 from string import ascii_uppercase, ascii_lowercase, digits
 
 # Glauth
-from app.glauth import create_glauth_config
+from glauthui.glauth import create_glauth_config
 
 # Create View classes with custom authentication
 class MyBaseView(BaseView):
