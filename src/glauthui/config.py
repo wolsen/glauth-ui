@@ -6,6 +6,8 @@ class Config(object):
     ORGANISATION = os.environ.get('ORGANISATION') or 'Glauth UI - Team'
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
     ADMIN_GROUP = os.environ.get('ADMIN_GROUP') or 'glauth_admin'
+    INSTANCE_PATH = os.environ.get('INSTANCE_PATH', None)
+    SERVER_NAME = os.environ.get('SERVER_NAME', None)
 
     # MAIL Config
     MAIL_SERVER = os.environ.get('MAIL_SERVER')

@@ -1,22 +1,3 @@
-[project]
-name = "glauthui"
-description = "Simple web interface for managing GLAuth users and groups."
-dynamic = ["version", "dependencies"]
-readme = "README.md"
-requires-python = ">=3.10"
-license = {file = "LICENSE"}
-authors = [
-    {name = "Nils Thiele"},
-]
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Framework :: Flask",
-    "Topic :: Software Development :: User Interfaces",
-]
-
-[project.urls]
-"Homepage" = "https://github.com/sonicnkt/glauth-ui"
-
 [tools.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
 

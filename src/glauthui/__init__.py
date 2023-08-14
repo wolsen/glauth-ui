@@ -14,7 +14,7 @@ import os
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, instance_path=Config.INSTANCE_PATH)
     app.config.from_object(Config)
 
     db.init_app(app)
@@ -28,6 +28,8 @@ def create_app():
         from glauthui.views import adminview  # noqa
         from glauthui import utils  # noqa
 
+    print(f"DB Config: {Config.SQLALCHEMY_DATABASE_URI}")
+    print(f"Instance: {app.instance_path}")
     migrate.init_app(app)
     migrate.init_app(app, db, render_as_batch=True)
     login.init_app(app)

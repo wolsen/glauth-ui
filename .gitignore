@@ -16,3 +16,5 @@ notes.txt
 logs
 instance
 .idea/*
+*egg-info
+build
